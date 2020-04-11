@@ -18,4 +18,8 @@
       <PackageReference Include="ppy.osu.Framework" Version="2020.411.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\IWETD.Resources\IWETD.Resources.csproj" />
+    </ItemGroup>
+
 </Project>

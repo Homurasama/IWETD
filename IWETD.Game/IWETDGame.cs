@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace IWETD.Game
+﻿namespace IWETD.Game
 {
     public class IWETDGame : IWETDGameBase
     {
-        private readonly string[] args;
+        private readonly string[] _args;
 
         public IWETDGame(string[] args)
         {
-            this.args = args;
+            _args = args;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using IWETD.Resources;
+﻿using System;
+using IWETD.Resources;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -14,12 +15,17 @@ namespace IWETD.Game
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             _dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
 
+        protected IWETDGameBase()
+        {
+            base.Content.Add(Content = new DrawSizePreservingFillContainer());
+        }
+
         [BackgroundDependencyLoader]
         private void Load()
         {
             Resources.AddStore(new DllResourceStore(IWETDResources.Assembly));
 
-            _dependencies.Cache(this);
+            _dependencies.CacheAs(this);
         }
     }
 }

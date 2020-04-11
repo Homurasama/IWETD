@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
+        <OutputType>Library</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <ApplicationIcon />
+        <StartupObject />
     </PropertyGroup>
 
     <ItemGroup>
@@ -10,6 +12,10 @@
       <Folder Include="Input" />
       <Folder Include="IO" />
       <Folder Include="Screens" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ppy.osu.Framework" Version="2020.411.0" />
     </ItemGroup>
 
 </Project>

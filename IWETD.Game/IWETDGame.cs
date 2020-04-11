@@ -2,11 +2,13 @@
 
 namespace IWETD.Game
 {
-    class Program
+    public class IWETDGame : IWETDGameBase
     {
-        static void Main(string[] args)
+        private readonly string[] args;
+
+        public IWETDGame(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            this.args = args;
         }
     }
 }

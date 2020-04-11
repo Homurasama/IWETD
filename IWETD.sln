@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWETD.Game.Tests", "IWETD.G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWETD.Resources", "IWETD.Resources\IWETD.Resources.csproj", "{B52FF400-734D-49FD-8F08-CFEFD45A9A5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWETD.Desktop", "IWETD.Desktop\IWETD.Desktop.csproj", "{134597B4-3436-4D29-97D8-3A51B5ECC56D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B52FF400-734D-49FD-8F08-CFEFD45A9A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B52FF400-734D-49FD-8F08-CFEFD45A9A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B52FF400-734D-49FD-8F08-CFEFD45A9A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134597B4-3436-4D29-97D8-3A51B5ECC56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134597B4-3436-4D29-97D8-3A51B5ECC56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134597B4-3436-4D29-97D8-3A51B5ECC56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134597B4-3436-4D29-97D8-3A51B5ECC56D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

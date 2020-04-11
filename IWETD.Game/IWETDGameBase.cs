@@ -8,18 +8,17 @@ namespace IWETD.Game
 {
     public class IWETDGameBase : osu.Framework.Game
     {
-        protected override Container<Drawable> Content { get; }
-        
         private DependencyContainer _dependencies;
+        protected override Container<Drawable> Content { get; }
 
-        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) => 
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             _dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
 
         [BackgroundDependencyLoader]
         private void Load()
         {
             Resources.AddStore(new DllResourceStore(IWETDResources.Assembly));
-            
+
             _dependencies.Cache(this);
         }
     }

@@ -7,7 +7,7 @@ namespace IWETD.Game.Tests
         protected override void LoadComplete()
         {
             base.LoadComplete();
-            
+
             Add(new TestBrowser("IWETD.Game.Tests"));
         }
     }

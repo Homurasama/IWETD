@@ -1,4 +1,9 @@
-﻿using IWETD.Resources;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using IWETD.Game.Database;
+using IWETD.Resources;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -6,7 +11,7 @@ using osu.Framework.IO.Stores;
 
 namespace IWETD.Game
 {
-    public class IWETDGameBase : osu.Framework.Game
+    public class IWETDGameBase : osu.Framework.Game, ICanAcceptFiles
     {
         private DependencyContainer _dependencies;
 
@@ -27,5 +32,20 @@ namespace IWETD.Game
 
             _dependencies.CacheAs(this);
         }
+        
+        private readonly List<ICanAcceptFiles> fileImporters = new List<ICanAcceptFiles>();
+
+        public async Task Import(params string[] paths)
+        {
+            var extension = Path.GetExtension(paths.First())?.ToLowerInvariant();
+
+            foreach (var importer in fileImporters)
+            {
+                if (importer.HandledExtensions.Contains(extension))
+                    await importer.Import(paths);
+            }
+        }
+
+        public string[] HandledExtensions => fileImporters.SelectMany(i => i.HandledExtensions).ToArray();
     }
 }

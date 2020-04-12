@@ -9,7 +9,7 @@ namespace IWETD.Desktop
         private static void Main(string[] args)
         {
             using (GameHost host = Host.GetSuitableHost(@"IWETD"))
-            using (var game = new IWETDGame(args))
+            using (var game = new IWETDGameDesktop(args))
             {
                 host.Run(game);
             }

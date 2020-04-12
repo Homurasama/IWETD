@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using IWETD.Game.IO.Encoding;
 
 namespace IWETD.Game.Tests.IO.Encoding
@@ -14,7 +15,7 @@ namespace IWETD.Game.Tests.IO.Encoding
             string base64 = Base64.Encode("A string");
 
             // assertions
-            Assert.AreEqual(base64, "QSBzdHJpbmc=");
+            Assert.AreEqual(base64, "QSBzdHJpbmc=", "String was not encoded");
         }
 
         [Test]
@@ -23,19 +24,23 @@ namespace IWETD.Game.Tests.IO.Encoding
             string text = Base64.Decode("QSBzdHJpbmc=");
 
             // assertions
-            Assert.AreEqual(text, "A string");
+            Assert.AreEqual(text, "A string", "String was not decoded");
         }
 
         [Test]
         public void TestEncoder()
         {
-            Assert.AreEqual(encoder.Encode(), "QSBzdHJpbmc=");
+            Assert.AreEqual(encoder.Encode(), "QSBzdHJpbmc=", "String was not encoded");
+
+            Assert.Throws<InvalidOperationException>(() => encoder.Encode());
         }
 
         [Test]
         public void TestDecoder()
         {
-            Assert.AreEqual(decoder.Decode(), "A string");
+            Assert.AreEqual(decoder.Decode(), "A string", "String was not decoded");
+            
+            Assert.Throws<InvalidOperationException>(() => decoder.Decode());
         }
     }
 }

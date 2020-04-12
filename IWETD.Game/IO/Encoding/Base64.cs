@@ -11,10 +11,21 @@ namespace IWETD.Game.IO.Encoding
     public class Base64
     {
         private string text;
+        private bool encoded;
 
         public Base64(string newText)
         {
             text = newText;
+
+            try
+            {
+                Decode(newText);
+                encoded = true;
+            }
+            catch
+            {
+                // not encoded.
+            }
         }
 
         /// <summary>
@@ -23,7 +34,12 @@ namespace IWETD.Game.IO.Encoding
         /// <returns>The encoded string.</returns>
         public string Encode()
         {
-            text = Convert.ToBase64String(UTF8.GetBytes(text));
+            if (!encoded)
+                text = Convert.ToBase64String(UTF8.GetBytes(text));
+            else
+                throw new InvalidOperationException("Cannot encode an already encoded string");
+
+            encoded = true;
             return text;
         }
 
@@ -33,7 +49,12 @@ namespace IWETD.Game.IO.Encoding
         /// <returns>The decoded string.</returns>
         public string Decode()
         {
-            text = UTF8.GetString(Convert.FromBase64String(text));
+            if (encoded)
+                text = UTF8.GetString(Convert.FromBase64String(text));
+            else
+                throw new InvalidOperationException("Cannot decode an already decoded string");
+
+            encoded = false;
             return text;
         }
 
@@ -43,20 +64,15 @@ namespace IWETD.Game.IO.Encoding
         /// </summary>
         /// <param name="text">The text to encode.</param>
         /// <returns>The encoded string.</returns>
-        public static string Encode(string text)
-        {
-            return Convert.ToBase64String(UTF8.GetBytes(text));
-        }
+        public static string Encode(string text) => 
+            Convert.ToBase64String(UTF8.GetBytes(text));
 
         /// <summary>
         /// Static decoding, decodes a base64 string to a normal one.
         /// </summary>
         /// <param name="text">The base64 string to decode.</param>
         /// <returns>The decoded string.</returns>
-        public static string Decode(string base64)
-        {
-            return UTF8.GetString(Convert.FromBase64String(base64));
-        }
-
+        public static string Decode(string base64) => 
+            UTF8.GetString(Convert.FromBase64String(base64));
     }
 }

@@ -14,11 +14,7 @@ namespace IWETD.Game.Input
 
         public override IEnumerable<KeyBinding> DefaultKeyBindings => GlobalKeyBindings.Concat(AudioControlKeyBindings);
 
-        public IEnumerable<KeyBinding> GlobalKeyBindings => new[]
-        {
-            new KeyBinding(InputKey.R, GlobalAction.Restart),
-            new KeyBinding(InputKey.Escape, GlobalAction.Pause)
-        };
+        public IEnumerable<KeyBinding> GlobalKeyBindings => null;
         
         public IEnumerable<KeyBinding> AudioControlKeyBindings => new[]
         {
@@ -41,8 +37,5 @@ namespace IWETD.Game.Input
         
         [Description("Toggle mute")]
         ToggleMute,
-        
-        Restart,
-        Pause
     }
 }

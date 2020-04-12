@@ -12,7 +12,7 @@ namespace IWETD.Game.IO
             string result = "";
 
             foreach (T item in ToArray()) {
-                result += item.ToString() + joiner;
+                result += item + joiner;
             }
 
             return result.Remove(result.Length - 1, 1);

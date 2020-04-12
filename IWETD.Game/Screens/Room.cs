@@ -12,9 +12,9 @@ namespace IWETD.Game.Screens
     {
         protected new IWETDGameBase Game => base.Game as IWETDGameBase;
 
-        public virtual int Id => 0;
+        public virtual int Id { get; }
 
-        public virtual Store<DrawableGameObject> Objects => new Store<DrawableGameObject>();
+        public virtual Store<DrawableGameObject> Objects { get; } = new Store<DrawableGameObject>();
 
         public virtual bool CursorVisible => true;
 

@@ -1,5 +1,7 @@
 ﻿using IWETD.Game.IO;
 using IWETD.Game.Objects;
+using IWETD.Game.Screens;
+using osu.Framework.Graphics;
 using osuTK;
 
 namespace IWETD.Game.Graphics.Graphs
@@ -7,22 +9,47 @@ namespace IWETD.Game.Graphics.Graphs
     public class Grid
     {
         public Vector2 Size;
-        public int CellCount = 0;
+        public Vector2 VectoredCellSize;
         public int CellSize = 0;
 
-        public Store<DrawableGameObject> Objects = new Store<DrawableGameObject>();
+        public int TotalCellCount = 0;
+
+        public Store<Drawable> Objects = new Store<Drawable>();
+
+        public bool IsRendered = false;
 
         public Grid(Vector2 scale, int cellSize = 1)
         {
             Size = scale;
-            CellCount = (int)(scale.X * scale.Y) / cellSize;
             CellSize = cellSize;
+
+            TotalCellCount = (int)(scale.X * scale.Y) / cellSize;
+
         }
 
-        public void Add(Vector2 pos, DrawableGameObject gameObject)
+        public Grid(Vector2 scale, Vector2 cellSize)
         {
-            gameObject.X = GetProperPosition(pos).X;
-            gameObject.Y = GetProperPosition(pos).Y;
+            Size = scale;
+            VectoredCellSize = cellSize;
+
+            TotalCellCount = (int)(scale.X * scale.Y) / (int)cellSize.X;
+        }
+
+        public void Render(Room room)
+        {
+            if (IsRendered == false)
+            {
+                IsRendered = true;
+                foreach (Drawable obj in Objects)
+                {
+                    room.Add(obj);
+                }
+            }
+        }
+
+        public void Add(Drawable gameObject)
+        {
+            gameObject.Position = GetProperPosition(gameObject.Position);
 
             Objects.Add(gameObject);
         }

@@ -13,4 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IWETD.Game\IWETD.Game.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphics\" />
+  </ItemGroup>
 </Project>

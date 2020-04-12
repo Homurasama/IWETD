@@ -17,7 +17,7 @@ namespace IWETD.Game.Tests.Visual
         
         public TestSceneRoom()
         {
-            Add(new ScreenStack(_room = new Room(1, new Vector2(512))) { RelativeSizeAxes = Axes.Both });
+            Add(new ScreenStack(_room = new Room(1)) { RelativeSizeAxes = Axes.Both });
         }
 
         [Test]

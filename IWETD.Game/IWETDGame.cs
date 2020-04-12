@@ -7,6 +7,11 @@ namespace IWETD.Game
         private readonly string[] _args;
         private DependencyContainer _dependencies;
 
+        public IWETDGame()
+        {
+
+        }
+
         public IWETDGame(string[] args)
         {
             _args = args;

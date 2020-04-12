@@ -1,5 +1,6 @@
 ﻿using IWETD.Game.IO;
 using IWETD.Game.Objects;
+using osu.Framework.Graphics;
 using osu.Framework.Screens;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace IWETD.Game.Screens
 
         bool CursorVisible { get; }
 
-        Store<DrawableGameObject> Objects { get; }
+        Store<Drawable> Objects { get; }
     }
 }

@@ -6,10 +6,10 @@ namespace IWETD.Game.IO
 {
     public static class ObjectParser
     {
-        public static T Parse<T>(string value)
+        public static T DeserializeObject<T>(string value)
             where T : new()
         {
-            if (value == null)
+            if (string.IsNullOrEmpty(value))
                 return new T();
 
             var result = value.Split('|').ToList();
@@ -39,6 +39,24 @@ namespace IWETD.Game.IO
                 
                 prop.SetValue(type, changedType);
                 index++;
+            }
+
+            return type;
+        }
+
+        public static List<T> DeserializeObjectList<T>(string value)
+            where T : new()
+        {
+            if (string.IsNullOrEmpty(value))
+                return new List<T>();
+
+            var objects = value.Split(';').ToList();
+            var type = new List<T>();
+
+            foreach (var obj in objects)
+            {
+                var desObj = DeserializeObject<T>(obj);
+                type.Add(desObj);
             }
 
             return type;

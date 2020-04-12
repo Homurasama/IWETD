@@ -12,7 +12,7 @@ namespace IWETD.Game.Input
             : base(matchingMode: KeyCombinationMatchingMode.Modifiers) 
         { }
 
-        public override IEnumerable<KeyBinding> DefaultKeyBindings => GlobalKeyBindings.Concat(AudioControlKeyBindings);
+        public override IEnumerable<KeyBinding> DefaultKeyBindings => AudioControlKeyBindings;
 
         public IEnumerable<KeyBinding> GlobalKeyBindings => null;
         

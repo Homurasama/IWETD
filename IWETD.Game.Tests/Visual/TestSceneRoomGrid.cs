@@ -29,11 +29,10 @@ namespace IWETD.Game.Tests.Visual
             Add(new ScreenStack(_room = new Room(1)) { RelativeSizeAxes = Axes.Both });
         }
 
-        [BackgroundDependencyLoader]
-        private void Load(GameHost host, IWETDGameBase gameBase)
+        [Test]
+        public void GridSystem()
         {
             AddUntilStep("The room is load", () => _room.IsLoaded);
-            AddUntilStep("wait for load", () => gameBase.IsLoaded);
 
             AddStep("Add some objects", () =>
             {
@@ -41,16 +40,21 @@ namespace IWETD.Game.Tests.Visual
                 {
                     for (int x = 0; x < Grid.CellSize; x++)
                     {
-                        Grid.Add(new Box
+                        Grid.Add(new DrawableGameObject
                         {
                             X = x,
                             Y = y,
                             Size = new Vector2(Grid.CellSize),
+                            Hitbox = new Box(),
+                            GameObject =
+                            {
+                                Texture = RNG.NextBool() ? "BasicTile" : "BasicSpike"
+                            },
                             Colour = new Color4(
-                                Math.Max(0.5f, RNG.NextSingle()),
-                                Math.Max(0.5f, RNG.NextSingle()),
-                                Math.Max(0.5f, RNG.NextSingle()),
-                                1)
+                                           Math.Max(0.5f, RNG.NextSingle()),
+                                           Math.Max(0.5f, RNG.NextSingle()),
+                                           Math.Max(0.5f, RNG.NextSingle()),
+                                           1)
                         });
                     }
                 }
@@ -93,6 +97,8 @@ namespace IWETD.Game.Tests.Visual
             });
             
             AddAssert("Objects added", () => Grid.Objects.Any());
+            AddAssert("Tiles added", () => Grid.Objects.Any(o => o is DrawableGameObject obj && obj.GameObject.Texture == "BasicTile"));
+            AddAssert("Spikes added", () => Grid.Objects.Any(o => o is DrawableGameObject obj && obj.GameObject.Texture == "BasicSpike"));
 
             AddStep("Render grid to room", () => Grid.Render(_room));
             AddStep("Render room", () => _room.Render());

@@ -1,6 +1,8 @@
 ﻿using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
 
 namespace IWETD.Game.Objects
 {
@@ -14,6 +16,7 @@ namespace IWETD.Game.Objects
         
         public DrawableGameObject() {}
 
+        // TODO: Interact with GameObject's properties
         public DrawableGameObject(string objectString)
         {
             
@@ -25,10 +28,17 @@ namespace IWETD.Game.Objects
         }
 
         [BackgroundDependencyLoader]
-        private void Load()
+        private void Load(TextureStore store)
         {
             CreateHitbox();
             AddInternal(Hitbox);
+            
+            AddInternal(new Sprite
+            {
+                Texture = store.Get("Tile/" + GameObject.Texture),
+                Size = Size,
+                FillMode = FillMode.Stretch
+            });
         }
 
         private void CreateHitbox()

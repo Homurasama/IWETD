@@ -25,7 +25,7 @@ namespace IWETD.Game.Screens
 
         public override string ToString()
         {
-            string str = $"{Id}|";
+            string str = $"{Id};";
 
             str += Objects.ToString();
 

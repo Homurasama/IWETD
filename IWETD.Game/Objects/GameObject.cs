@@ -6,9 +6,9 @@
 
         public int Y { get; set; }
 
-        public string Texture { get; set; }
+        public string Texture { get; set; } = "BasicTile";
 
-        public string Hitbox { get; set; }
+        public string Hitbox { get; set; } = "Square";
 
         public override string ToString() => $"{X}|{Y}|{Texture}|{Hitbox}";
     }

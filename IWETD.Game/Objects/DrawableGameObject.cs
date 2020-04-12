@@ -6,7 +6,10 @@ namespace IWETD.Game.Objects
 {
     public class DrawableGameObject : CompositeDrawable, IGameObject
     {
+        public GameObject GameObject { get; private set; } = new GameObject();
+
         public Drawable Hitbox;
+
         public virtual bool Solid => true;
         
         public DrawableGameObject() {}
@@ -18,7 +21,7 @@ namespace IWETD.Game.Objects
         
         public DrawableGameObject(GameObject gameObject)
         {
-            
+            GameObject = gameObject;
         }
 
         [BackgroundDependencyLoader]

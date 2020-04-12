@@ -27,7 +27,10 @@ namespace IWETD.Game.Screens
         {
             string str = $"{Id};";
 
-            str += Objects.ToString();
+            foreach (var gameObject in Objects)
+            {
+                str += gameObject.GameObject + ";";
+            }
 
             return str.Remove(str.Length - 1, 1);
         }

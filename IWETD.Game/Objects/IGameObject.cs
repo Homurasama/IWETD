@@ -6,6 +6,6 @@ namespace IWETD.Game.Objects
 {
     public interface IGameObject
     {
-        bool Clippable { get; }
+        bool Solid { get; }
     }
 }

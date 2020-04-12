@@ -13,6 +13,7 @@ using osuTK;
 using osuTK.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace IWETD.Game.Tests.Visual
@@ -20,8 +21,8 @@ namespace IWETD.Game.Tests.Visual
     [TestFixture]
     public class TestSceneRoomGrid : TestScene
     {
-        private Room _room;
-        private Grid _grid => _room.ObjectGrid;
+        private readonly Room _room;
+        private Grid Grid => _room.ObjectGrid;
 
         public TestSceneRoomGrid()
         {
@@ -31,39 +32,25 @@ namespace IWETD.Game.Tests.Visual
         [BackgroundDependencyLoader]
         private void Load(GameHost host, IWETDGameBase gameBase)
         {
-            IWETDGame game = new IWETDGame();
-            game.SetHost(host);
-
-
-            AddRange(new Drawable[]
-            {
-                  new Box
-                  {
-                        Colour = Color4.Black,
-                        RelativeSizeAxes = Axes.Both
-                  },
-                  game
-            });
-
             AddUntilStep("The room is load", () => _room.IsLoaded);
             AddUntilStep("wait for load", () => gameBase.IsLoaded);
 
             AddStep("Add some objects", () =>
             {
-                for (int x = 0; x < _grid.CellSize; x++)
+                for (int y = 0; y < Grid.CellSize; y++)
                 {
-                    for (int y = 0; y < _grid.CellSize; y++)
+                    for (int x = 0; x < Grid.CellSize; x++)
                     {
-                        _grid.Add(new Box
+                        Grid.Add(new Box
                         {
                             X = x,
                             Y = y,
-                            Size = new Vector2((float)_grid.CellSize),
+                            Size = new Vector2(Grid.CellSize),
                             Colour = new Color4(
                                 Math.Max(0.5f, RNG.NextSingle()),
                                 Math.Max(0.5f, RNG.NextSingle()),
                                 Math.Max(0.5f, RNG.NextSingle()),
-                                1),
+                                1)
                         });
                     }
                 }
@@ -104,9 +91,11 @@ namespace IWETD.Game.Tests.Visual
                     Size = new Vector2(16)
                 });*/
             });
+            
+            AddAssert("Objects added", () => Grid.Objects.Any());
 
-            AddStep("Render grid to room", () => _grid.Render(_room));
-            AddStep("Render room", () => _room.Render(game));
+            AddStep("Render grid to room", () => Grid.Render(_room));
+            AddStep("Render room", () => _room.Render());
         }
     }
 }

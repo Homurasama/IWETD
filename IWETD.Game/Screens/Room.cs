@@ -12,15 +12,11 @@ namespace IWETD.Game.Screens
 {
     public class Room : Screen, IRoom
     {
-        protected new IWETDGameBase Game => base.Game as IWETDGameBase;
-
         public virtual int Id { get; }
 
         public virtual Store<Drawable> Objects { get; } = new Store<Drawable>();
 
         public virtual bool CursorVisible => true;
-
-        public bool IsRendered = false;
 
         public Grid ObjectGrid = new Grid(new Vector2(512), 24);
 
@@ -35,21 +31,15 @@ namespace IWETD.Game.Screens
             ObjectGrid = roomGrid;
         }
 
-        public void Render(IWETDGame game)
+        public void Render()
         {
-            if (IsRendered == false)
+            ClearInternal();
+            ObjectGrid.Render(this);
+
+            foreach (Drawable obj in Objects)
             {
-                IsRendered = true;
-                ObjectGrid.Render(this);
-
-                foreach (Drawable obj in Objects)
-                {
-                    game.Add(obj);
-                }
-
-                return;
+                AddInternal(obj);
             }
-            return;
         }
 
         public void Add(Drawable obj)

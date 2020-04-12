@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
@@ -9,6 +10,7 @@ using osuTK.Graphics;
 
 namespace IWETD.Game.Tests.Visual
 {
+    [Ignore("Dependencies required")]
     public class TestSceneIWETDGame : TestScene
     {
         private IReadOnlyList<Type> RequiredGameDependencies => new[]

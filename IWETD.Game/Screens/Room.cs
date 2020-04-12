@@ -18,9 +18,9 @@ namespace IWETD.Game.Screens
 
         public virtual bool CursorVisible => true;
 
-        public Room(Vector2 size)
+        public Room(int id, Vector2 size)
         {
-
+            Id = id;
         }
 
         public override string ToString()

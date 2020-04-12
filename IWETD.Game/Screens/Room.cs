@@ -10,7 +10,7 @@ namespace IWETD.Game.Screens
     public class Room : Screen, IRoom
     {
         protected new IWETDGameBase Game => base.Game as IWETDGameBase;
-        private GameObject[] objects;
+        private DrawableGameObject[] objects;
         public int Id;
 
         public virtual bool CursorVisible => true;

@@ -1,34 +1,15 @@
-﻿using osu.Framework.Allocation;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
-namespace IWETD.Game.Objects
+﻿namespace IWETD.Game.Objects
 {
-    public abstract class GameObject : CompositeDrawable, IGameObject
+    public class GameObject
     {
-        protected abstract Drawable Hitbox { get; }
-        public virtual bool Solid => true;
+        public int X { get; set; }
 
-        [BackgroundDependencyLoader]
-        private void Load()
-        {
-            CreateHitbox();
-            AddInternal(Hitbox);
-        }
+        public int Y { get; set; }
 
-        private void CreateHitbox()
-        {
-            Hitbox.With(d =>
-            {
-                d.Alpha = 0;
-                d.AlwaysPresent = true;
-                d.Position = Position;
-                d.Size = Size;
-            });
-        }
+        public string Texture { get; set; }
 
-        // TODO: Player should be cached.
-        public bool CheckHit(Drawable player)
-            => player.BoundingBox.IntersectsWith(Hitbox.BoundingBox);
+        public string Hitbox { get; set; }
+
+        public override string ToString() => $"{X}|{Y}|{Texture}|{Hitbox}";
     }
 }

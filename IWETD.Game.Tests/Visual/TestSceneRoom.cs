@@ -21,7 +21,7 @@ namespace IWETD.Game.Tests.Visual
         }
 
         [Test]
-        public void Checkup()
+        public void TestObjects()
         {
             AddUntilStep("wait for load", () => _room.IsLoaded);
             AddAssert("Check ID", () => _room.Id == 1);

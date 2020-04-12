@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using IWETD.Game.Database;
+using IWETD.Game.Input;
 using IWETD.Resources;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -15,12 +16,9 @@ namespace IWETD.Game
     {
         private DependencyContainer _dependencies;
 
-        protected IWETDGameBase()
-        {
-            base.Content.Add(Content = new DrawSizePreservingFillContainer());
-        }
+        private Container content;
 
-        protected override Container<Drawable> Content { get; }
+        protected override Container<Drawable> Content => content;
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             _dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
@@ -31,6 +29,12 @@ namespace IWETD.Game
             Resources.AddStore(new DllResourceStore(IWETDResources.Assembly));
 
             _dependencies.CacheAs(this);
+            
+            base.Content.Add(new GlobalActionContainer
+            {
+                RelativeSizeAxes = Axes.Both,
+                Child = content = new DrawSizePreservingFillContainer()
+            });
         }
         
         private readonly List<ICanAcceptFiles> fileImporters = new List<ICanAcceptFiles>();

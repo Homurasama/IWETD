@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <StartupObject>IWETD.Game.Tests.VisualTestRunner</StartupObject>
+    </PropertyGroup>
+    <ItemGroup Label="Project References">
+        <ProjectReference Include="$(MSBuildThisFileDirectory)IWETD.Game\IWETD.Game.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)IWETD.Game\Tests\VisualTestRunner.cs">
+            <Link>VisualTestRunner.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <PropertyGroup>
+        <GenerateProgramFile>false</GenerateProgramFile>
+    </PropertyGroup>
+</Project>

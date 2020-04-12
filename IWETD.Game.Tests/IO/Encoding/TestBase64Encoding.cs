@@ -3,7 +3,6 @@ using IWETD.Game.IO.Encoding;
 
 namespace IWETD.Game.Tests.IO.Encoding
 {
-    [TestFixture]
     public class TestBase64Encoding
     {
         private Base64 encoder = new Base64("A string");

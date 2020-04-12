@@ -36,7 +36,7 @@ namespace IWETD.Game.Tests.IO.Encoding
         [Test]
         public void TestDecoder()
         {
-            Assert.AreEqual(encoder.Decode(), "A string");
+            Assert.AreEqual(decoder.Decode(), "A string");
         }
     }
 }

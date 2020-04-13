@@ -19,11 +19,12 @@ namespace IWETD.Game.Tests.Visual
     public class TestSceneRoomFile : TestScene
     {
         private Room _room;
-        private GameFileManager<Room> _fileManager = new GameFileManager<Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), "room");
+        private RoomManager _fileManager = new RoomManager(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"));
 
         public TestSceneRoomFile()
         {
             _room = _fileManager.Read("room1");
+            //_room.ObjectGrid =
             Add(new ScreenStack(_room));
         }
 
@@ -64,6 +65,8 @@ namespace IWETD.Game.Tests.Visual
             AddAssert("Object size is correct", () => _room.Objects.Count == 110);
             AddAssert("Can convert to string", () => !string.IsNullOrEmpty(_room.ToString()));
             AddStep("Log string", () => Logger.Log(_room.ToString()));
+
+            AddStep("Render room file", () => _room.Render());
         }
     }
 }

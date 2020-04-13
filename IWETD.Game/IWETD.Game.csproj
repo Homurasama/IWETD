@@ -9,10 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Screens" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="ppy.osu.Framework" Version="2020.411.0" />
     </ItemGroup>
 

@@ -74,5 +74,11 @@ namespace IWETD.Game.IO.Encoding
         /// <returns>The decoded string.</returns>
         public static string Decode(string base64) => 
             UTF8.GetString(Convert.FromBase64String(base64));
+
+        public static string EncodeFromBytes(byte[] bytes) =>
+            Convert.ToBase64String(bytes);
+
+        public static byte[] DecodeToBytes(string base64) =>
+            Convert.FromBase64String(base64);
     }
 }

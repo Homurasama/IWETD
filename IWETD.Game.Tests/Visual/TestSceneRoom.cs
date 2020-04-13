@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using IWETD.Game.IO;
 using IWETD.Game.Objects;
 using IWETD.Game.Screens;
 using NUnit.Framework;
@@ -14,6 +16,7 @@ namespace IWETD.Game.Tests.Visual
     public class TestSceneRoom : TestScene
     {
         private Room _room;
+        private GameFileManager<Room> _fileManager = new GameFileManager<Room>();
         
         public TestSceneRoom()
         {
@@ -57,6 +60,8 @@ namespace IWETD.Game.Tests.Visual
             AddAssert("Object size is correct", () => _room.Objects.Count == 110);
             AddAssert("Can convert to string", () => !string.IsNullOrEmpty(_room.ToString()));
             AddStep("Log string", () => Logger.Log(_room.ToString()));
+
+            AddStep("Save string to file", () => _fileManager.Save(Path.Combine(Directory.GetCurrentDirectory(), @"roomdata/room1.room"), _room));
         }
     }
 }

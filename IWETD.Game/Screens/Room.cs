@@ -7,6 +7,7 @@ using osuTK;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using IWETD.Game.Graphics;
 
 namespace IWETD.Game.Screens
 {
@@ -15,6 +16,12 @@ namespace IWETD.Game.Screens
         public virtual int Id { get; }
 
         public virtual Store<Drawable> Objects { get; } = new Store<Drawable>();
+
+        public DrawableBackground Background = new DrawableBackground
+        {
+            BackgroundTexture = "RandomTestBackground",
+            Size = new Vector2(1920, 1080)
+        };
 
         public virtual bool CursorVisible => true;
 
@@ -35,6 +42,8 @@ namespace IWETD.Game.Screens
         {
             ClearInternal();
             ObjectGrid.Render(this);
+            
+            AddInternal(Background);
 
             foreach (Drawable obj in Objects)
             {

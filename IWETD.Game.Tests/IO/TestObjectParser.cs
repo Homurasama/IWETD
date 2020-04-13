@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using IWETD.Game.IO;
 using IWETD.Game.Objects;
 using NUnit.Framework;
@@ -11,13 +12,13 @@ namespace IWETD.Game.Tests.IO
         [Test]
         public void TestDeserialization()
         {
-            Console.WriteLine(ObjectParser.DeserializeObject<GameObject>("10|10|BasicTile|0"));
+            Console.WriteLine(ObjectParser.DeserializeObject<GameObject>("1|10|10|BasicTile|0|0|90"));
         }
         
         [Test]
         public void TestDeserializationList()
         {
-            ObjectParser.DeserializeObjectList<GameObject>("10|10|BasicTile|0;20|10|BasicSpike|1");
+            Console.WriteLine(ObjectParser.DeserializeObjectList<GameObject>("1|10|10|BasicTile|0|0|90;20|10|BasicSpike|1|0|90"));
         }
     }
 }

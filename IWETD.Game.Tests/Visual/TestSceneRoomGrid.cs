@@ -54,7 +54,8 @@ namespace IWETD.Game.Tests.Visual
                                            Math.Max(0.5f, RNG.NextSingle()),
                                            Math.Max(0.5f, RNG.NextSingle()),
                                            Math.Max(0.5f, RNG.NextSingle()),
-                                           1)
+                                           1),
+                            Rotation = 90 * RNG.Next(0, 4)
                         });
                     }
                 }

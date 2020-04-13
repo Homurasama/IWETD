@@ -27,6 +27,11 @@ namespace IWETD.Game.Screens
 
         public Grid ObjectGrid = new Grid(new Vector2(512), 24);
 
+        public Room()
+        {
+
+        }
+
         public Room(int id)
         {
             Id = id;
@@ -58,7 +63,9 @@ namespace IWETD.Game.Screens
 
         public override string ToString()
         {
-            string str = $"{Id};";
+            string str = $"{Id}|";
+
+            str += $"{Background.ToString()}:";
 
             foreach (var gameObject in Objects)
             {

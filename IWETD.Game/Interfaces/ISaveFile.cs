@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IWETD.Game.Saves
+namespace IWETD.Game.Interfaces
 {
     public interface ISaveFile
     {

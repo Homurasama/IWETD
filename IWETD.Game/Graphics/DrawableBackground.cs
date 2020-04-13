@@ -10,12 +10,16 @@ namespace IWETD.Game.Graphics
 {
     public class DrawableBackground : CompositeDrawable, IBackground
     {
-        //public new virtual int Depth => 1;
         public string BackgroundTexture { get; set; }
 
         public DrawableBackground()
         {
 
+        }
+
+        public DrawableBackground(string backgroundTexture)
+        {
+            BackgroundTexture = backgroundTexture;
         }
 
         [BackgroundDependencyLoader]
@@ -26,6 +30,11 @@ namespace IWETD.Game.Graphics
                 Texture = store.Get("Background/" + BackgroundTexture),
                 Size = Size
             });
+        }
+
+        public override string ToString()
+        {
+            return $"{BackgroundTexture}";
         }
     }
 }

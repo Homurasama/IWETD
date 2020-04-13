@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using IWETD.Game.IO;
 using IWETD.Game.Objects;
 using IWETD.Game.Screens;
@@ -11,20 +13,21 @@ using osu.Framework.Testing;
 using osu.Framework.Utils;
 using osuTK;
 
+
 namespace IWETD.Game.Tests.Visual
 {
-    public class TestSceneRoom : TestScene
+    public class TestSceneRoomFile : TestScene
     {
         private Room _room;
-        private GameFileManager<Room> _fileManager = new GameFileManager<Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), null);
-       
-        public TestSceneRoom()
+        private GameFileManager<Room> _fileManager = new GameFileManager<Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), "room");
+
+        public TestSceneRoomFile()
         {
-            Add(new ScreenStack(_room = new Room(1)) { RelativeSizeAxes = Axes.Both });
+            _room = _fileManager.Read("room1");
+            Add(new ScreenStack(_room));
         }
 
-        [Test]
-        public void TestObjects()
+        public void TestRoomFile()
         {
             AddUntilStep("wait for load", () => _room.IsLoaded);
             AddAssert("Check ID", () => _room.Id == 1);
@@ -40,11 +43,11 @@ namespace IWETD.Game.Tests.Visual
                     }));
                 }
             });
-            
+
             AddAssert("Object size is correct", () => _room.Objects.Count == 10);
             AddAssert("Can convert to string", () => !string.IsNullOrEmpty(_room.ToString()));
             AddStep("Log string", () => Logger.Log(_room.ToString()));
-            
+
             AddStep("Add more objects", () =>
             {
                 for (int i = 0; i < 100; i++)
@@ -56,12 +59,10 @@ namespace IWETD.Game.Tests.Visual
                     }));
                 }
             });
-            
+
             AddAssert("Object size is correct", () => _room.Objects.Count == 110);
             AddAssert("Can convert to string", () => !string.IsNullOrEmpty(_room.ToString()));
             AddStep("Log string", () => Logger.Log(_room.ToString()));
-
-            AddStep("Save string to file", () => _fileManager.Save(Path.Combine(Directory.GetCurrentDirectory(), @"roomdata/room1.room"), _room));
         }
     }
 }

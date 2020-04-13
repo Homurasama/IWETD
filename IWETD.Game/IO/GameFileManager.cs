@@ -6,19 +6,30 @@ using System.Text;
 namespace IWETD.Game.IO
 {
     public class GameFileManager<T>
+        where T : new()
     {
         private readonly List<T> _fileList = new List<T>();
+
+        public string Directory;
+
+        public string FileEnding;
         //private readonly Compressor
 
-        public virtual dynamic Read(string path)
+        public GameFileManager(string directory, string fileEnding)
         {
-            _fileList.Add(ObjectParser.DeserializeObject<dynamic>(File.ReadAllText(path)));
-            return ObjectParser.DeserializeObject<dynamic>(File.ReadAllText(path));
+            this.Directory = directory;
+            this.FileEnding = fileEnding;
         }
 
-        public virtual List<dynamic> ReadAll(string path)
+        public virtual T Read(string file)
         {
-            List<dynamic> list = ObjectParser.DeserializeObjectList<dynamic>(File.ReadAllText(path));
+            _fileList.Add(GameParser.DeserializeObject<T>(File.ReadAllText(Path.Combine(Directory, $"{file}.{FileEnding}"))));
+            return GameParser.DeserializeObject<T>(File.ReadAllText(Path.Combine(Directory, file)));
+        }
+
+        public virtual List<T> ReadAll(string file)
+        {
+            List<T> list = GameParser.DeserializeObjectList<T>(File.ReadAllText(Path.Combine(Directory, $".{file}.{FileEnding}")));
             foreach (T item in list)
             {
                 _fileList.Add(item);

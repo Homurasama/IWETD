@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace IWETD.Game.IO
 {
-    public static class ObjectParser
+    public static class GameParser
     {
         public static T DeserializeObject<T>(string value)
             where T : new()

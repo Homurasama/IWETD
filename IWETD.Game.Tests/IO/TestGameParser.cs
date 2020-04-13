@@ -18,7 +18,7 @@ namespace IWETD.Game.Tests.IO
         [Test]
         public void TestDeserializationList()
         {
-            Console.WriteLine(GameParser.DeserializeObjectList<GameObject>("1|10|10|BasicTile|0|0|90;20|10|BasicSpike|1|0|90"));
+            Console.WriteLine(GameParser.DeserializeObjectList<GameObject>("1|10|10|BasicTile|0|0|90;1|20|10|BasicSpike|1|0|90"));
         }
     }
 }

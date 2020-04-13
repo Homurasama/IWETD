@@ -8,7 +8,7 @@ namespace IWETD.Game.IO.Saves
     public class SaveManager : GameFileManager<SaveFile>
     {
         public SaveManager(string directory)
-            : base(directory, "save")
+            : base(directory, "sav")
         {
 
         }

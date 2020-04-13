@@ -11,5 +11,7 @@ namespace IWETD.Game.IO.Saves
         public int TimeSpent { get; set; } = 0;
         public int RoomNumber { get; set; } = 0;
         public int CheckpointId { get; set; } = 0;
+
+        public string ToString() => $"{Deaths}|{TimeSpent}|{RoomNumber}|{CheckpointId}";
     }
 }

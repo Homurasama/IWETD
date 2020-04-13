@@ -42,12 +42,15 @@ namespace IWETD.Game.Tests.Visual
                     {
                         var spike = RNG.NextBool();
 
-                        Grid.Add(new DrawableGameObject
+                        Grid.Add(new DrawableGameObject(new GameObject
+                            {
+                                Hitbox = spike ? "Triangle" : "Square"
+                            }
+                        )
                         {
                             X = x,
                             Y = y,
                             Size = new Vector2(Grid.CellSize),
-                            Hitbox = spike ? (Drawable) new Triangle() : new Box(),
                             Origin = Anchor.Centre,
                             GameObject =
                             {

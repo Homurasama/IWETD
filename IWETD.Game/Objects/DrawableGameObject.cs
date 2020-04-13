@@ -5,12 +5,18 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osuTK;
 
 namespace IWETD.Game.Objects
 {
     public class DrawableGameObject : CompositeDrawable, IGameObject
     {
         private GameObject _gameObject = new GameObject();
+
+        private Sprite _sprite;
+        
+        [Resolved]
+        private TextureStore _store { get; set; }
 
         public GameObject GameObject
         {
@@ -31,6 +37,15 @@ namespace IWETD.Game.Objects
                         Hitbox = new Triangle();
                         break;
                 }
+                
+                Size = new Vector2(24);
+                Position = new Vector2(value?.X ?? 0, value?.Y ?? 0);
+                Rotation = value?.Rotation ?? 0;
+
+                if (IsLoaded)
+                {
+                    _sprite.Texture = _store.Get("Tile/" + GameObject.Texture);
+                }
             }
         }
 
@@ -49,14 +64,14 @@ namespace IWETD.Game.Objects
         }
 
         [BackgroundDependencyLoader]
-        private void Load(TextureStore store)
+        private void Load()
         {
             CreateHitbox();
             AddInternal(Hitbox);
             
-            AddInternal(new Sprite
+            AddInternal(_sprite = new Sprite
             {
-                Texture = store.Get("Tile/" + GameObject.Texture),
+                Texture = _store.Get("Tile/" + GameObject.Texture),
                 Size = Size,
                 FillMode = FillMode.Stretch
             });

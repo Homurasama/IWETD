@@ -16,13 +16,13 @@ namespace IWETD.Game.IO
                 compress += $"{Path.GetFileName(str)}|{Base64.EncodeFromBytes(File.ReadAllBytes(str))};";
             }
 
-            File.WriteAllText(saveTo, Base64.Encode(compress.Remove(compress.Length - 1, 1)));
+            File.WriteAllBytes(saveTo, System.Text.Encoding.UTF32.GetBytes(Base64.Encode(compress.Remove(compress.Length - 1, 1))));
         }
 
         public static void Decompress(string compressedPath, string decompressTo)
         {
             if (!Directory.Exists(decompressTo)) Directory.CreateDirectory(decompressTo);
-            string decompress = Base64.Decode(File.ReadAllText(compressedPath));
+            string decompress = Base64.Decode(System.Text.Encoding.UTF32.GetString(File.ReadAllBytes(compressedPath)));
             
             foreach (string str in decompress.Split(';'))
             {

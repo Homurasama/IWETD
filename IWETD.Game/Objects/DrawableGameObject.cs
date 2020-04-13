@@ -47,7 +47,6 @@ namespace IWETD.Game.Objects
             {
                 d.Alpha = 0;
                 d.AlwaysPresent = true;
-                d.Position = Position;
                 d.Size = Size;
             });
         }

@@ -40,15 +40,18 @@ namespace IWETD.Game.Tests.Visual
                 {
                     for (int x = 0; x < Grid.CellSize; x++)
                     {
+                        var spike = RNG.NextBool();
+
                         Grid.Add(new DrawableGameObject
                         {
                             X = x,
                             Y = y,
                             Size = new Vector2(Grid.CellSize),
-                            Hitbox = new Box(),
+                            Hitbox = spike ? (Drawable) new Triangle() : new Box(),
+                            Origin = Anchor.Centre,
                             GameObject =
                             {
-                                Texture = RNG.NextBool() ? "BasicTile" : "BasicSpike"
+                                Texture = spike ? "BasicSpike" : "BasicTile"
                             },
                             Colour = new Color4(
                                            Math.Max(0.5f, RNG.NextSingle()),

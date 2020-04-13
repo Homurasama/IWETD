@@ -27,10 +27,11 @@ namespace IWETD.Game.Tests.Visual
             Add(new ScreenStack(_room));
         }
 
+        [Test]
         public void TestRoomFile()
         {
             AddUntilStep("wait for load", () => _room.IsLoaded);
-            AddAssert("Check ID", () => _room.Id == 1);
+            AddAssert("Check ID", () => _room.Id == 0);
 
             AddStep("Add objects", () =>
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using IWETD.Game.Attributes;
 
 namespace IWETD.Game.IO
 {
@@ -21,24 +22,32 @@ namespace IWETD.Game.IO
             
             foreach (var prop in props)
             {
-                var propType = prop.PropertyType;
-                object changedType = null;
+                var attrs = prop.GetCustomAttributes(true);
 
-                try
+                foreach (var attr in attrs)
                 {
-                    if (index >= result.Count)
-                        throw new InvalidOperationException($"Not enough properties for {typeof(T)}, Index reached {index}");
+                    if (attr is GamePropertyAttribute)
+                    {
+                        var propType = prop.PropertyType;
+                        object changedType = null;
 
-                    var toSet = result.ToArray()[index];
-                    changedType = Convert.ChangeType(toSet, propType);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                        try
+                        {
+                            if (index >= result.Count)
+                                throw new InvalidOperationException($"Not enough properties for {typeof(T)}, Index reached {index}");
+
+                            var toSet = result.ToArray()[index];
+                            changedType = Convert.ChangeType(toSet, propType);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
                 
-                prop.SetValue(type, changedType);
-                index++;
+                        prop.SetValue(type, changedType);
+                        index++;
+                    }
+                }
             }
 
             return type;

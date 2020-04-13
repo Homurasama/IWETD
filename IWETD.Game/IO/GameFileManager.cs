@@ -23,13 +23,17 @@ namespace IWETD.Game.IO
 
         public virtual T Read(string file)
         {
-            _fileList.Add(GameParser.DeserializeObject<T>(File.ReadAllText(Path.Combine(Directory, $"{file}.{FileEnding}"))));
-            return GameParser.DeserializeObject<T>(File.ReadAllText(Path.Combine(Directory, file)));
+            var gameObjects = File.ReadAllText(Path.Combine(Directory, $"{file}.{FileEnding}")).Split(':')[1];
+
+            _fileList.Add(GameParser.DeserializeObject<T>(gameObjects));
+            return GameParser.DeserializeObject<T>(gameObjects);
         }
 
         public virtual List<T> ReadAll(string file)
         {
-            List<T> list = GameParser.DeserializeObjectList<T>(File.ReadAllText(Path.Combine(Directory, $".{file}.{FileEnding}")));
+            var gameObjects = File.ReadAllText(Path.Combine(Directory, $"{file}.{FileEnding}")).Split(':')[1];
+
+            List<T> list = GameParser.DeserializeObjectList<T>(gameObjects);
             foreach (T item in list)
             {
                 _fileList.Add(item);

@@ -7,15 +7,17 @@ using osuTK;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using IWETD.Game.Attributes;
 using IWETD.Game.Graphics;
 
 namespace IWETD.Game.Screens
 {
     public class Room : Screen, IRoom
     {
-        public virtual int Id { get; }
+        [GameProperty]
+        public virtual int Id { get; set; }
 
-        public virtual Store<Drawable> Objects { get; } = new Store<Drawable>();
+        public virtual Store<Drawable> Objects { get; set; } = new Store<Drawable>();
 
         public DrawableBackground Background = new DrawableBackground
         {

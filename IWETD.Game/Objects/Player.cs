@@ -149,7 +149,17 @@ namespace IWETD.Game.Objects
 
         public void OnReleased(PlayerAction action)
         {
-            _direction = 0;
+            switch (action)
+            {
+                // the rest will break the direction regardless of it being a movement command or not.
+                case PlayerAction.Left:
+                    _direction = 0f;
+                    break;
+                
+                case PlayerAction.Right:
+                    _direction = 0f;
+                    break;
+            }
         }
     }
 }

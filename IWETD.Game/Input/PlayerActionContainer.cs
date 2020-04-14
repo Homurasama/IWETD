@@ -5,6 +5,11 @@ namespace IWETD.Game.Input
 {
     public class PlayerActionContainer : KeyBindingContainer<PlayerAction>
     {
+        public PlayerActionContainer(KeyCombinationMatchingMode keyCombinationMatchingMode = KeyCombinationMatchingMode.Any, SimultaneousBindingMode simultaneousBindingMode = SimultaneousBindingMode.All) 
+            : base(simultaneousBindingMode, keyCombinationMatchingMode)
+        {
+        }
+        
         public override IEnumerable<KeyBinding> DefaultKeyBindings => new[]
         {
             // Movement

@@ -2,6 +2,7 @@
 using System.IO;
 using IWETD.Game.IO;
 using IWETD.Game.Objects;
+using IWETD.Game.Objects.Drawables;
 using IWETD.Game.Screens;
 using NUnit.Framework;
 using osu.Framework.Graphics;

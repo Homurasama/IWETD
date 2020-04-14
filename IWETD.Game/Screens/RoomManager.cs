@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using IWETD.Game.IO;
 using IWETD.Game.Objects;
+using IWETD.Game.Objects.Drawables;
 using osu.Framework.Graphics;
 
 namespace IWETD.Game.Screens

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using IWETD.Game.Attributes;
 using IWETD.Game.Graphics;
+using IWETD.Game.Objects.Drawables;
 
 namespace IWETD.Game.Screens
 {

@@ -62,7 +62,10 @@ namespace IWETD.Game.Screens
                 RelativeSizeAxes = Axes.Both,
                 Child = _content = new Container
                 {
-                    RelativeSizeAxes = Axes.Both
+                    Size = new Vector2(ObjectGrid.Size.X + ObjectGrid.CellSize),
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    FillAspectRatio = 1
                 }
             });
         }

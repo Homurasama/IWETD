@@ -7,7 +7,7 @@ using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osuTK;
 
-namespace IWETD.Game.Objects
+namespace IWETD.Game.Objects.Drawables
 {
     public class DrawableGameObject : CompositeDrawable, IGameObject
     {

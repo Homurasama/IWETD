@@ -18,7 +18,7 @@ namespace IWETD.Game.Tests.Visual
     {
         private Room _room;
         private GameFileManager<Room> _fileManager = new GameFileManager<Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), null);
-       
+
         public TestSceneRoom()
         {
             Add(new ScreenStack(_room = new Room(1)) { RelativeSizeAxes = Axes.Both });

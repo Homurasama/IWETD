@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using IWETD.Game.IO;
 using IWETD.Game.Objects;
@@ -16,6 +17,12 @@ namespace IWETD.Game.Tests.Visual
 {
     public class TestSceneRoom : TestScene
     {
+        public override IReadOnlyList<Type> RequiredTypes => new[]
+        {
+            typeof(Player),
+            typeof(Room)
+        };
+        
         private Room _room;
         private GameFileManager<Room> _fileManager = new GameFileManager<Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), null);
 

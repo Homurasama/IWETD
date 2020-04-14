@@ -9,14 +9,20 @@ using System.Collections.Generic;
 using System.Text;
 using IWETD.Game.Attributes;
 using IWETD.Game.Graphics;
+using IWETD.Game.Input;
 using IWETD.Game.Objects.Drawables;
+using osu.Framework.Allocation;
+using osu.Framework.Graphics.Containers;
 
 namespace IWETD.Game.Screens
 {
+    [Cached]
     public class Room : Screen, IRoom
     {
         [GameProperty]
         public virtual int Id { get; set; }
+
+        private Container _content;
 
         public virtual Store<Drawable> Objects { get; set; } = new Store<Drawable>();
 
@@ -46,17 +52,38 @@ namespace IWETD.Game.Screens
             ObjectGrid = roomGrid;
         }
 
+        [BackgroundDependencyLoader]
+        private void Load()
+        {
+            Name = $"Room #{Id}";
+
+            AddInternal(new PlayerActionContainer
+            {
+                RelativeSizeAxes = Axes.Both,
+                Child = _content = new Container
+                {
+                    RelativeSizeAxes = Axes.Both
+                }
+            });
+        }
+
         public void Render()
         {
-            ClearInternal();
+            _content.Clear();
             ObjectGrid.Render(this);
             
-            AddInternal(Background);
+            _content.Add(Background);
 
             foreach (Drawable obj in Objects)
             {
-                AddInternal(obj);
+                _content.Add(obj);
             }
+            
+            _content.Add(new Player(new GameObject
+            {
+                Hitbox = "Square",
+                Id = 0
+            }));
         }
 
         public void Add(Drawable obj)

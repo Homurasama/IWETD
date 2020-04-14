@@ -16,4 +16,8 @@
       <ProjectReference Include="..\IWETD.Resources\IWETD.Resources.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Objects\Events" />
+    </ItemGroup>
+
 </Project>

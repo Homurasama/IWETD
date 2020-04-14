@@ -24,6 +24,11 @@ namespace IWETD.Game.Screens
 
         private Container _content;
 
+        public Container Content
+        {
+            get { return _content; }
+        }
+
         public virtual Store<Drawable> Objects { get; set; } = new Store<Drawable>();
 
         public DrawableBackground Background = new DrawableBackground
@@ -81,12 +86,14 @@ namespace IWETD.Game.Screens
             {
                 _content.Add(obj);
             }
-            
-            _content.Add(new Player(new GameObject
-            {
-                Hitbox = "Square",
-                Id = 0
-            }));
+        }
+
+        public void AddPlayer(Player player)
+        {
+            // set proper position
+            player.Position = ObjectGrid.GetProperPosition(player.Position);
+
+            _content.Add(player);
         }
 
         public void Add(Drawable obj)

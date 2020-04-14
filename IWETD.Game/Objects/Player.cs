@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using IWETD.Game.Attributes;
 using IWETD.Game.Input;
 using IWETD.Game.IO.Saves;
 using IWETD.Game.Objects.Drawables;
 using IWETD.Game.Screens;
 using osu.Framework.Allocation;
+using osu.Framework.Graphics;
 using osu.Framework.Input.Bindings;
 using osu.Framework.Input.Events;
+using osuTK;
 using osuTK.Graphics;
 
 namespace IWETD.Game.Objects
@@ -36,7 +40,6 @@ namespace IWETD.Game.Objects
         public SaveFile SaveFile => SaveManager.Read(CurrentSaveFile);
         #endregion
         
-        [Resolved]
         private Room _room { get; set; }
 
         public Player(GameObject gameObject)
@@ -59,11 +62,30 @@ namespace IWETD.Game.Objects
         
         private float _direction;
 
+        public void SetRoom(Room room, Vector2 position)
+        {
+            _room = room;
+
+            if (room.IsLoaded != true)
+                return;
+
+            Position = position;
+
+            _room.AddPlayer(this);
+        }
+
         protected override void Update()
         {
+            List<Drawable> getSurrounding = GetSurroundingDrawables();
+            
+            /* foreach (Drawable drawable in getSurrounding)
+            {
+                //Console.WriteLine($"{drawable.X} - {drawable.Y} | Player: {this.X} - {this.Y}");
+            }*/
+
             if (!IsColliding())
             {
-                X = Math.Clamp(X + _direction, 0, _room.ObjectGrid.Size.X);
+                X += _direction;
                 Y = Math.Clamp(Y + 0.35f, 0, _room.ObjectGrid.Size.Y);
             }
             else
@@ -71,6 +93,7 @@ namespace IWETD.Game.Objects
                 X -= 0.35f;
                 Y -= 1f;
             }
+
 
             base.Update();
         }
@@ -100,6 +123,28 @@ namespace IWETD.Game.Objects
             }
 
             return true;
+        }
+
+        public List<Drawable> GetSurroundingDrawables()
+        {
+            List<Drawable> surrounding = new List<Drawable>();
+
+            for (int i = 0; i < _room.Content.Count; i++)
+            {
+                // X
+                if ((this.X - _room.Content[i].X) < 0)
+                {
+                    surrounding.Add(_room.Content[i]);
+                }
+
+                // Y
+                if ((this.Y - _room.Content[i].Y) < 0)
+                {
+                    surrounding.Add(_room.Content[i]);
+                }
+            }
+
+            return surrounding;
         }
 
         public void OnReleased(PlayerAction action)

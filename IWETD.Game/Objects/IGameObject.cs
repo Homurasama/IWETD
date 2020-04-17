@@ -7,5 +7,7 @@ namespace IWETD.Game.Objects
     public interface IGameObject
     {
         bool Solid { get; }
+
+        //int iunno lol 
     }
 }

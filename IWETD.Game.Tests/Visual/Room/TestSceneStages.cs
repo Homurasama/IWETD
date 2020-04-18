@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using IWETD.Game.Objects;
 using IWETD.Game.Screens;
+using NUnit.Framework;
 using osu.Framework.Testing;
 using osuTK;
 
 namespace IWETD.Game.Tests.Visual.Room
 {
+    [TestFixture]
     public class TestSceneStages : TestScene
     {
         public override IReadOnlyList<Type> RequiredTypes => new[]

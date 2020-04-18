@@ -34,7 +34,7 @@ namespace IWETD.Game.Screens
             foreach (string file in SystemDirectory.GetFiles(Directory))
                 Rooms.Add(RoomManager.Read(Path.GetFileNameWithoutExtension(file)));
 
-            return Rooms;
+            return;
         }
 
         public void SwitchRoom(int index)

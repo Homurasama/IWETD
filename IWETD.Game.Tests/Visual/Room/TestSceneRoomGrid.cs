@@ -1,34 +1,27 @@
-﻿using IWETD.Game.Graphics.Graphs;
+﻿using System;
+using System.Linq;
+using IWETD.Game.Graphics.Graphs;
 using IWETD.Game.Objects;
-using IWETD.Game.Screens;
+using IWETD.Game.Objects.Drawables;
 using NUnit.Framework;
-using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Shapes;
-using osu.Framework.Platform;
 using osu.Framework.Screens;
 using osu.Framework.Testing;
 using osu.Framework.Utils;
 using osuTK;
 using osuTK.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using IWETD.Game.Objects.Drawables;
-using IWETD.Game.Screens.Rooms;
 
-namespace IWETD.Game.Tests.Visual
+namespace IWETD.Game.Tests.Visual.Room
 {
     [TestFixture]
     public class TestSceneRoomGrid : TestScene
     {
-        private readonly Room _room;
+        private readonly Screens.Rooms.Room _room;
         private Grid Grid => _room.ObjectGrid;
 
         public TestSceneRoomGrid()
         {
-            Add(new ScreenStack(_room = new Room(1)) { RelativeSizeAxes = Axes.Both });
+            Add(new ScreenStack(_room = new Screens.Rooms.Room(1)) { RelativeSizeAxes = Axes.Both });
         }
 
         [Test]

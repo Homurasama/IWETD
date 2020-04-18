@@ -4,32 +4,29 @@ using System.IO;
 using IWETD.Game.IO;
 using IWETD.Game.Objects;
 using IWETD.Game.Objects.Drawables;
-using IWETD.Game.Screens;
-using IWETD.Game.Screens.Rooms;
 using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osu.Framework.Testing;
 using osu.Framework.Utils;
-using osuTK;
 
-namespace IWETD.Game.Tests.Visual
+namespace IWETD.Game.Tests.Visual.Room
 {
     public class TestSceneRoom : TestScene
     {
         public override IReadOnlyList<Type> RequiredTypes => new[]
         {
             typeof(Player),
-            typeof(Room)
+            typeof(Screens.Rooms.Room)
         };
         
-        private Room _room;
-        private GameFileManager<Room> _fileManager = new GameFileManager<Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), null);
+        private Screens.Rooms.Room _room;
+        private GameFileManager<Screens.Rooms.Room> _fileManager = new GameFileManager<Screens.Rooms.Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), null);
 
         public TestSceneRoom()
         {
-            Add(new ScreenStack(_room = new Room(1)) { RelativeSizeAxes = Axes.Both });
+            Add(new ScreenStack(_room = new Screens.Rooms.Room(1)) { RelativeSizeAxes = Axes.Both });
         }
 
         [Test]

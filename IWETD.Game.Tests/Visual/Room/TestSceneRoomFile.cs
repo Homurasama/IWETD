@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using IWETD.Game.Graphics.Graphs;
-using IWETD.Game.IO;
-using IWETD.Game.Objects;
-using IWETD.Game.Screens;
 using IWETD.Game.Screens.Rooms;
 using NUnit.Framework;
-using osu.Framework.Graphics;
 using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osu.Framework.Testing;
-using osu.Framework.Utils;
-using osuTK;
-using osuTK.Graphics;
 
-
-namespace IWETD.Game.Tests.Visual
+namespace IWETD.Game.Tests.Visual.Room
 {
     public class TestSceneRoomFile : TestScene
     {
-        private Room _room;
+        private Screens.Rooms.Room _room;
         private Grid Grid => _room.ObjectGrid;
         private RoomManager _fileManager = new RoomManager(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"));
 

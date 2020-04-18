@@ -5,6 +5,7 @@ using IWETD.Game.IO;
 using IWETD.Game.Objects;
 using IWETD.Game.Objects.Drawables;
 using IWETD.Game.Screens;
+using IWETD.Game.Screens.Rooms;
 using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Framework.Logging;

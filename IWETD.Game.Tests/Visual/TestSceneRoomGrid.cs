@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IWETD.Game.Objects.Drawables;
+using IWETD.Game.Screens.Rooms;
 
 namespace IWETD.Game.Tests.Visual
 {

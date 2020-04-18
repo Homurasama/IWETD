@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using IWETD.Game.IO;
 using IWETD.Game.Screens.Rooms;
+
+using SystemDirectory = System.IO.Directory;
 
 namespace IWETD.Game.Screens
 {
@@ -22,6 +25,16 @@ namespace IWETD.Game.Screens
         {
             RoomManager = new RoomManager(stageDirectory);
             Directory = stageDirectory;
+
+            ReadRooms();
+        }
+
+        public void ReadRooms()
+        {
+            foreach (string file in SystemDirectory.GetFiles(Directory))
+                Rooms.Add(RoomManager.Read(Path.GetFileNameWithoutExtension(file)));
+
+            return Rooms;
         }
 
         public void SwitchRoom(int index)

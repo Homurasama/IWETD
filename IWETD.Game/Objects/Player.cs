@@ -55,10 +55,10 @@ namespace IWETD.Game.Objects
         {
             Colour = Color4.Red;
 
-            AddInternal(CalculatePosition(_topCollision = new Box(), Vector2.UnitY).With(d => d.Height = 1));
-            AddInternal(CalculatePosition(_botCollision = new Box(), -Vector2.UnitY).With(d => d.Height = 1));
-            AddInternal(CalculatePosition(_rigCollision = new Box(), Vector2.UnitX).With(d => d.Width = 1));
-            AddInternal(CalculatePosition(_lefCollision = new Box(), -Vector2.UnitX).With(d => d.Width = 1));
+            AddInternal(CalculatePosition(_topCollision = new Box(), Vector2.UnitY).With(d => d.Height = 3));
+            AddInternal(CalculatePosition(_botCollision = new Box(), -Vector2.UnitY).With(d => d.Height = 3));
+            AddInternal(CalculatePosition(_rigCollision = new Box(), Vector2.UnitX).With(d => d.Width = 3));
+            AddInternal(CalculatePosition(_lefCollision = new Box(), -Vector2.UnitX).With(d => d.Width = 3));
         }
 
         // we only want to check for 1px

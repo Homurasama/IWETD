@@ -10,5 +10,4 @@ namespace IWETD.Game.Screens
 
         string Directory { get; set; }
     }
-    }
 }

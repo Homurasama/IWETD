@@ -28,6 +28,8 @@ namespace IWETD.Game.Screens
         {
             CurrentRoom?.Dispose();
             CurrentRoom = Rooms[index];
+
+            CurrentRoom.Render();
         }
     }
 }

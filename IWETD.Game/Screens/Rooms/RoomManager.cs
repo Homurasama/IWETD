@@ -8,7 +8,7 @@ using IWETD.Game.Objects;
 using IWETD.Game.Objects.Drawables;
 using osu.Framework.Graphics;
 
-namespace IWETD.Game.Screens
+namespace IWETD.Game.Screens.Rooms
 {
     public class RoomManager : GameFileManager<Room>
     {

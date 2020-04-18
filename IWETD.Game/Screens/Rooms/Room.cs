@@ -14,7 +14,7 @@ using IWETD.Game.Objects.Drawables;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics.Containers;
 
-namespace IWETD.Game.Screens
+namespace IWETD.Game.Screens.Rooms
 {
     [Cached]
     public class Room : Screen, IRoom
@@ -122,5 +122,19 @@ namespace IWETD.Game.Screens
 
             return str.Remove(str.Length - 1, 1);
         }
+
+        public void Dispose()
+        {
+            _content.Clear();
+
+            base.Dispose();
+        }
+    }
+
+    public enum RoomType
+    {
+        Hub,
+        Normal,
+        Boss
     }
 }

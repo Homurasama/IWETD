@@ -6,7 +6,7 @@ using IWETD.Game.Attributes;
 using IWETD.Game.Input;
 using IWETD.Game.IO.Saves;
 using IWETD.Game.Objects.Drawables;
-using IWETD.Game.Screens;
+using IWETD.Game.Screens.Rooms;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Input.Bindings;

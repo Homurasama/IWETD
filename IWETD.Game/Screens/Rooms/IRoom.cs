@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IWETD.Game.Screens
+namespace IWETD.Game.Screens.Rooms
 {
     public interface IRoom : IScreen
     {

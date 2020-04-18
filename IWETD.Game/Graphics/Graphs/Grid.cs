@@ -1,6 +1,6 @@
 ﻿using IWETD.Game.IO;
 using IWETD.Game.Objects;
-using IWETD.Game.Screens;
+using IWETD.Game.Screens.Rooms;
 using osu.Framework.Graphics;
 using osuTK;
 

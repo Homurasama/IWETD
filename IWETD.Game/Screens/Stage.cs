@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using IWETD.Game.IO;
 using IWETD.Game.Screens.Rooms;
-
+using osu.Framework.Graphics;
+using osu.Framework.Screens;
 using SystemDirectory = System.IO.Directory;
 
 namespace IWETD.Game.Screens
 {
-    public class Stage : IStage
+    public class Stage : ScreenStack, IStage
     {
         public string Name { get; }
 
@@ -19,30 +17,35 @@ namespace IWETD.Game.Screens
 
         public string Directory { get; set; }
 
-        public RoomManager RoomManager { get; set; }
+        public RoomManager RoomManager { get; }
 
         public Stage(string stageDirectory)
         {
+            RelativeSizeAxes = Axes.Both;
+
             RoomManager = new RoomManager(stageDirectory);
             Directory = stageDirectory;
 
             ReadRooms();
+            
+            if (Rooms.Count > 0)
+                SwitchRoom(0);
         }
 
         public void ReadRooms()
         {
             foreach (string file in SystemDirectory.GetFiles(Directory))
                 Rooms.Add(RoomManager.Read(Path.GetFileNameWithoutExtension(file)));
-
-            return;
         }
 
         public void SwitchRoom(int index)
         {
-            CurrentRoom?.Dispose();
             CurrentRoom = Rooms[index];
 
-            CurrentRoom.Render();
+            Push(CurrentRoom);
+
+            CurrentRoom.OnLoadComplete += d => 
+                CurrentRoom.Render();
         }
     }
 }

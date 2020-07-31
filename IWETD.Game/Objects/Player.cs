@@ -175,11 +175,11 @@ namespace IWETD.Game.Objects
             switch (action)
             {
                 case PlayerAction.Left:
-                    _momentun.X -= 0.35f;
+                    _momentun.X += 0.35f;
                     break;
                 
                 case PlayerAction.Right:
-                    _momentun.X += 0.35f;
+                    _momentun.X -= 0.35f;
                     break;
             }
 
@@ -192,11 +192,11 @@ namespace IWETD.Game.Objects
             {
                 // the rest will break the direction regardless of it being a movement command or not.
                 case PlayerAction.Left:
-                    _momentun.X += 0.35f;
+                    _momentun.X -= 0.35f;
                     break;
                 
                 case PlayerAction.Right:
-                    _momentun.X -= 0.35f;
+                    _momentun.X += 0.35f;
                     break;
             }
         }

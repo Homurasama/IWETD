@@ -15,12 +15,6 @@ namespace IWETD.Game.Tests.Visual.Room
 {
     public class TestSceneRoom : TestScene
     {
-        public override IReadOnlyList<Type> RequiredTypes => new[]
-        {
-            typeof(Player),
-            typeof(Screens.Rooms.Room)
-        };
-        
         private Screens.Rooms.Room _room;
         private GameFileManager<Screens.Rooms.Room> _fileManager = new GameFileManager<Screens.Rooms.Room>(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/"), null);
 

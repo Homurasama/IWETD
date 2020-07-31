@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using IWETD.Game.Objects;
 using IWETD.Game.Screens;
@@ -13,12 +11,6 @@ namespace IWETD.Game.Tests.Visual.Room
     [TestFixture]
     public class TestSceneStages : TestScene
     {
-        public override IReadOnlyList<Type> RequiredTypes => new[]
-        {
-            typeof(Player),
-            typeof(Stage)
-        };
-
         private Stage _stage = new Stage(Path.Combine(Directory.GetCurrentDirectory(), "data/rooms/stage1"));
 
         public TestSceneStages()

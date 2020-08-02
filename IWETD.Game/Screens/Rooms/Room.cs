@@ -107,17 +107,10 @@ namespace IWETD.Game.Screens.Rooms
 
             str += $"{Background.ToString()}:";
 
-            foreach (var gameObject in Objects)
+            foreach (var drawable in Objects)
             {
-                if (gameObject is DrawableGameObject gameObj)
-                {
-                    str += gameObj.GameObject + ";";
-                }
-                else
-                {
-                    str += "no;";
-                }
-
+                var gameObject = (DrawableGameObject) drawable;
+                str += gameObject.GameObject + ";";
             }
 
             return str.Remove(str.Length - 1, 1);

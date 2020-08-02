@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using IWETD.Game.Attributes;
 using IWETD.Game.Input;
 using IWETD.Game.IO.Saves;
 using IWETD.Game.Objects.Drawables;
 using IWETD.Game.Screens.Rooms;
-using osu.Framework.Allocation;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input.Bindings;
-using osu.Framework.Input.Events;
 using osuTK;
 using osuTK.Graphics;
 
@@ -43,7 +37,11 @@ namespace IWETD.Game.Objects
         
         private Vector2 velocity = Vector2.Zero;
         private float gravity = 0.03f;
-        private float walkSpeed = 2;
+        private float walkSpeed = 1;
+
+        private int left;
+        private int right;
+        private bool jump;
         
         private Room Room { get; set; }
 
@@ -79,8 +77,55 @@ namespace IWETD.Game.Objects
 
         protected override void UpdateAfterChildren()
         {
-            
             base.UpdateAfterChildren();
+
+            var elapsedFrameTime = Clock.ElapsedFrameTime;
+            var timeDifference = elapsedFrameTime / 5;
+
+            var direction = right - left;
+
+            velocity.X = direction * walkSpeed;
+            velocity.Y = velocity.Y + gravity;
+            
+            foreach (var roomObject in Room.Objects)
+            {
+                if (roomObject.BoundingBox.IntersectsWith(BoundingBox.Offset(0, 1)) && jump)
+                {
+                    velocity.Y = -3;
+                }
+            }
+
+            #region Horizontal collision checking
+            foreach (var roomObject in Room.Objects)
+            {
+                if (!roomObject.BoundingBox.IntersectsWith(BoundingBox.Offset(velocity.X, 0))) continue;
+
+                while (!roomObject.BoundingBox.IntersectsWith(BoundingBox.Offset(Math.Sign(velocity.X), 0)))
+                {
+                    X = X + Math.Sign(velocity.X) * (float) timeDifference;
+                }
+
+                velocity.X = 0;
+            }
+
+            X = X + velocity.X * (float) timeDifference;
+            #endregion
+
+            #region Vertical collision checking
+            foreach (var roomObject in Room.Objects)
+            {
+                if (!roomObject.BoundingBox.IntersectsWith(BoundingBox.Offset(0, velocity.Y))) continue;
+
+                while (!roomObject.BoundingBox.IntersectsWith(BoundingBox.Offset(0, Math.Sign(velocity.Y))))
+                {
+                    Y = Y + Math.Sign(velocity.Y);
+                }
+
+                velocity.Y = 0;
+            }
+
+            Y = Y + velocity.Y * (float) timeDifference;
+            #endregion
         }
 
         public bool OnPressed(PlayerAction action)
@@ -88,12 +133,15 @@ namespace IWETD.Game.Objects
             switch (action)
             {
                 case PlayerAction.Left:
+                    left = 1;
                     break;
                 
                 case PlayerAction.Right:
+                    right = 1;
                     break;
                 
                 case PlayerAction.Jump:
+                    jump = true;
                     break;
             }
 
@@ -105,14 +153,20 @@ namespace IWETD.Game.Objects
             switch (action)
             {
                 case PlayerAction.Left:
+                    left = 0;
                     break;
                 
                 case PlayerAction.Right:
+                    right = 0;
                     break;
                 
                 case PlayerAction.Jump:
+                    jump = false;
                     break;
             }
         }
+        
+        private int GetIntValue(bool value)
+            => value ? 1 : 0;
     }
 }
